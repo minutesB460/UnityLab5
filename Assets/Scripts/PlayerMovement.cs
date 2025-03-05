@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     // public TextMeshProUGUI scoreTextOver;
     public GameObject enemies;
 
-    // public GameObject gameOverUI;
-    GameManager gameManager;
+    public GameObject gameOverUI;
+    // GameManager gameManager;
     public JumpOverGoomba jumpOverGoomba;
 
     private Animator marioAnimator;
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumpedState = false;
     private bool moving = false;
+
+    public UnityEvent<int> increaseScore;
     
     // Start is called before the first frame update
     void Start()
@@ -58,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
         
         marioSprite = GetComponent<SpriteRenderer>();
 
-        // gameOverUI.SetActive(false);
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gameOverUI.SetActive(false);
+        // gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
         marioAnimator = GetComponent<Animator>();
         // update animator state
@@ -268,7 +271,8 @@ public class PlayerMovement : MonoBehaviour
         // Mario on top of Goomba and the velocity is downwards
         if (marioY > goombaY + 0.2f && marioRb.linearVelocity.y < 0) 
         {
-            gameManager.IncreaseScore(1); 
+            // gameManager.IncreaseScore(1); 
+            increaseScore.Invoke(1);
 
             // play goomba death animation
             EnemyMovement goomba = other.gameObject.GetComponent<EnemyMovement>();
@@ -289,8 +293,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Collided with goomba!");
             Time.timeScale = 0.0f;
 
-            // gameOverUI.SetActive(true);
-            gameManager.GameOver();
+            gameOverUI.SetActive(true);
+            // gameManager.GameOver();
 
             alive = false;
         }
@@ -374,8 +378,13 @@ public class PlayerMovement : MonoBehaviour
     void  Awake(){
 		Debug.Log("awake called");
 		// other instructions that needs to be done during Awake
-        GameManager.instance.gameRestart.AddListener(GameRestart);
+        // GameManager.instance.gameRestart.AddListener(GameRestart);
 	}
+    public UnityEvent gameOver;
+    public void OnGameOver()
+    {
+        gameOver.Invoke();
+    }
 
 
     

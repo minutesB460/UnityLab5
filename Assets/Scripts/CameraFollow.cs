@@ -33,4 +33,10 @@ public class CameraController : MonoBehaviour
             this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
     }
 
+    public void GameRestart()
+    {   
+    // Reset camera position correctly
+    transform.position = new Vector3(startX, transform.position.y, transform.position.z);
+    }
+
 }

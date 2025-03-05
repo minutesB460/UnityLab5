@@ -24,9 +24,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void  Awake(){
-		Debug.Log("awake called");
-		// other instructions that needs to be done during Awake
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-	}
+    // void  Awake(){
+	// 	Debug.Log("awake called");
+	// 	// other instructions that needs to be done during Awake
+    //     GameManager.instance.gameRestart.AddListener(GameRestart);
+	// }
 }

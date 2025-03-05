@@ -34,7 +34,7 @@ public class QuestionBox : MonoBehaviour
                 audioSource.PlayOneShot(coinSound);
 
                 //Increase the score 
-                gameManager.IncreaseScore(1); 
+                // gameManager.IncreaseScore(1); 
 
 
                 springJoint.frequency = 10;

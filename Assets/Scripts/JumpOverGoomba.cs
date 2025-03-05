@@ -20,10 +20,10 @@ public class JumpOverGoomba : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
     // Start is called before the first frame update
-    GameManager gameManager;
+    // GameManager gameManager;
     void Start()
     {
-         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        //  gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

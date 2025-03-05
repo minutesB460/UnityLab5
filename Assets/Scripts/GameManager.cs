@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameManager: Singleton<GameManager>
+public class GameManager: MonoBehaviour
 {
     // events
     public UnityEvent gameStart;
@@ -89,6 +89,17 @@ public class GameManager: Singleton<GameManager>
     foreach (QuestionBox box in boxes)
     {
         box.RestoreBox();
+    }
+}
+
+    [System.Obsolete]
+    void Awake()
+{
+    GameManager[] managers = FindObjectsOfType<GameManager>();
+    if (managers.Length > 1)
+    {
+        Destroy(gameObject); // Ensure only one instance exists
+        return;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class HUDManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class HUDManager : MonoBehaviour
     public GameObject highscoreText;
     public IntVariable gameScore;
     // Start is called before the first frame update
+
     void Start()
     {
     }
@@ -64,15 +66,15 @@ public class HUDManager : MonoBehaviour
         
     }
 
-    void  Awake(){
-		Debug.Log("awake called");
-		// other instructions that needs to be done during Awake
-        // subscribe to events
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-	}
+    // void  Awake(){
+	// 	Debug.Log("awake called");
+	// 	// other instructions that needs to be done during Awake
+    //     // subscribe to events
+    //     GameManager.instance.gameStart.AddListener(GameStart);
+    //     GameManager.instance.gameOver.AddListener(GameOver);
+    //     GameManager.instance.gameRestart.AddListener(GameStart);
+    //     GameManager.instance.scoreChange.AddListener(SetScore);
+	// }
 
     public void ReturnToMain()
     {
@@ -80,4 +82,20 @@ public class HUDManager : MonoBehaviour
         Debug.Log("Return to main menu");
         SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
     }
+
+    // public void IncreaseScore(int increment)
+    // {
+    //     score += increment;
+    //     SetScore(score);
+    //     // increase score by 1
+    //     gameScore.ApplyChange(1);
+
+    //     // invoke score change event with current score to update HUD
+    //     scoreChange.Invoke(gameScore.Value);
+    // }
+
+    // public void SetScore(int score)
+    // {
+    //     scoreChange.Invoke(score);
+    // }
 }
